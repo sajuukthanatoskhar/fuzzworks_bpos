@@ -15,7 +15,7 @@ def get_single_id(name: str) -> str:
     :param name: Can be 'Sabre', 'Sabre Blueprint', 'Caldari Shuttle'
     :return:
     """
-    return requests.get(fw_api_name_to_id + name).json()['typeID']
+    return requests.get(fw_api_name_to_id + name).json()[0]['typeID']
 
 
 def get_blueprint_details(id: str) -> dict:
