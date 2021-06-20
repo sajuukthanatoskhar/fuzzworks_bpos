@@ -15,6 +15,8 @@ def get_single_id(name: str) -> str:
     :param name: Can be 'Sabre', 'Sabre Blueprint', 'Caldari Shuttle'
     :return:
     """
+    if len(name.split(",")) >1:
+        name = name[:-1*(len(name.split(",")[-1])+1)]
     return requests.get(fw_api_name_to_id + name).json()[0]['typeID']
 
 
@@ -34,4 +36,7 @@ def get_manufacturing_materials(bp_data_dump : dict) -> dict:
     :param bp_data_dump:
     :return:
     """
+    if 'activityMaterials' not in bp_data_dump.keys():
+        return {}
+
     return bp_data_dump['activityMaterials'][activities['manufacturing']]
