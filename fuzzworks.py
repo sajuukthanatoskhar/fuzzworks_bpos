@@ -19,7 +19,6 @@ def get_single_id(name: str) -> str:
         name = name[:-1*(len(name.split(",")[-1])+1)]
     return requests.get(fw_api_name_to_id + name).json()[0]['typeID']
 
-
 def get_blueprint_details(id: str) -> dict:
     """
     Gets the blueprint details
