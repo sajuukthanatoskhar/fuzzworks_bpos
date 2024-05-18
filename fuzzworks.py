@@ -6,7 +6,8 @@ fw_api_blueprints = "https://www.fuzzwork.co.uk/blueprint/api/blueprint.php?type
 activities = {'manufacturing': '1',
               'ME' : '4',
               'TE' : '5',
-              'Invention' : '8'}
+              'Invention' : '8',
+              'Reactions': '11'}
 
 
 def get_single_id(name: str) -> str:
@@ -39,3 +40,14 @@ def get_manufacturing_materials(bp_data_dump : dict) -> dict:
         return {}
 
     return bp_data_dump['activityMaterials'][activities['manufacturing']]
+
+
+def get_named_blueprint(name: str):
+    return requests.get(fw_api_blueprints + get_single_id(name)).json()
+
+def get_named_blueprint_manufacturing_mats(name: str):
+    try:
+        return requests.get(fw_api_blueprints + get_single_id(name)).json()['activityMaterials'][activities['manufacturing']]
+    except KeyError:
+        return requests.get(fw_api_blueprints + get_single_id(name)).json()['activityMaterials'][
+            activities['Reactions']]
