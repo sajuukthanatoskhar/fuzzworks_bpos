@@ -1,5 +1,5 @@
-import eve_blueprint_read_write as bp_lib
-import fuzzworks as fw
+from fuzzworks_bpos import eve_blueprint_read_write as bp_lib
+from fuzzworks_bpos import fuzzworks as fw
 
 test_blueprint_name = "Condor"
 test_blueprint_id = '684'
